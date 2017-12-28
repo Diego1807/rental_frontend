@@ -21,4 +21,7 @@ export class LoginFormComponent implements OnInit {
       this.router.navigate(['dashboard']);
     });
   }
+  signUp() {
+    this.router.navigate(['createUser']);
+  }
 }

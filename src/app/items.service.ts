@@ -16,6 +16,16 @@ export class ItemsService {
       return res.json()
     });
   }
+  getBorrowedItems(username, token) {
+    var url = 'http://localhost:8080/User/' + username + '/borrowedItems';
+    var headers = new Headers();
+    headers.append('token', token);
+    var opts = new RequestOptions();
+    opts.headers = headers;
+    return this.http.get(url, opts).map((res: Response) => {
+      return res.json()
+    });
+  }
   returnItem(username, productID, token) {
     var url = 'http://localhost:8080/User/' + username + '/returnItem/' + productID;
     var headers = new Headers();
@@ -39,6 +49,27 @@ export class ItemsService {
     opts.headers = headers;
     return this.http.post(url, body, opts).map((res: Response) => {
       return res.json();
-    })
+    });
+  }
+  borrowItem(username, token, productID) {
+    var url = 'http://localhost:8080/User/' + username + '/borrows/' + productID;
+    var headers = new Headers();
+    headers.append('token', token);
+    var opts = new RequestOptions();
+    opts.headers = headers;
+    return this.http.get(url, opts).map((res: Response) => {
+      return res.json();
+    });
+  }
+  searchItem(token, name) {
+    var url = 'http://localhost:8080/Item/search';
+    var body = {name: name};
+    var headers = new Headers();
+    headers.append('token', token);
+    var opts = new RequestOptions();
+    opts.headers = headers;
+    return this.http.post(url, body, opts).map((res: Response) => {
+      return res.json();
+    });
   }
 }

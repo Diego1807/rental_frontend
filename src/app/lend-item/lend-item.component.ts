@@ -9,16 +9,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./lend-item.component.css']
 })
 export class LendItemComponent implements OnInit {
-
+  user;
   constructor(private itemsService: ItemsService, private userService: UserService, private router: Router) { }
-
   ngOnInit() {
   }
   lendItem(e) {
     e.preventDefault();
-    var user = this.userService.getUserProperties();
-    var username = user.username;
-    var token = user.token;
+    this.user = this.userService.getUserProperties();
+    var username = this.user.username;
+    var token = this.user.token;
     var name = e.target.elements[0].value;
     var price = e.target.elements[1].value;
     var description = e.target.elements[2].value;

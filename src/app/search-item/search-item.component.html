@@ -1,0 +1,21 @@
+<div class="search">
+    <form (submit)="searchItem($event)">
+        <h4>Search:</h4>
+        <div class="input">
+            <input type="text">
+        </div>
+        <div class="input">
+            <input type="submit" value="Search">
+        </div>
+    </form>
+</div>
+<div class="items">
+    <ul *ngFor="let item of items">
+        <li>
+            Name: {{item.Item.name}}<br>
+            Price: {{item.Item.price}}
+            &nbsp;&nbsp;&nbsp;<button (click)="borrowItem(item.Item.productID)">Borrow</button><br>
+            Description: {{item.Item.description}}
+        </li>
+    </ul>
+</div>

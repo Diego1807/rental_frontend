@@ -10,26 +10,32 @@ import { ItemsService } from '../items.service';
 })
 export class DashboardComponent implements OnInit {
   lendedItems: JSON;
+  user;
+  borrowedItems: JSON;
   constructor(private userService: UserService, private itemsService: ItemsService, private router: Router) {
   }
-
+  getUser() {
+    this.user = this.userService.getUserProperties();
+  }
   ngOnInit() {
-    var user = this.userService.getUserProperties();
-    var username = user.username;
-    var token = user.token;
-    this.itemsService.getLendedItems(username, token).subscribe((res) => {
+    this.getUser();
+    this.itemsService.getLendedItems(this.user.username, this.user.token).subscribe((res) => {
       this.lendedItems = res;
     });
+    this.itemsService.getBorrowedItems(this.user.username, this.user.token).subscribe((res) => {
+      this.borrowedItems = res;
+    })
   }
   returnItem(productID) {
-    var user = this.userService.getUserProperties();
-    var username = user.username;
-    var token = user.token;
-    this.itemsService.returnItem(username, productID, token).subscribe((res) => {
+    this.getUser();
+    this.itemsService.returnItem(this.user.username, productID, this.user.token).subscribe((res) => {
       this.ngOnInit();
     });
   }
   lendItem() {
     this.router.navigate(['lendItem']);
+  }
+  searchItem() {
+    this.router.navigate(['searchItem']);
   }
 }

@@ -15,6 +15,7 @@ import { AuthGuard } from './auth.guard';
 import { RouterModule, Routes } from '@angular/router';
 import { LendItemComponent } from './lend-item/lend-item.component';
 import { CreateUserComponent } from './create-user/create-user.component';
+import { SearchItemComponent } from './search-item/search-item.component';
 
 const appRoutes: Routes = [
   {
@@ -34,6 +35,11 @@ const appRoutes: Routes = [
   {
     path: 'createUser',
     component: CreateUserComponent
+  },  
+  {
+    path: 'searchItem',
+    canActivate: [ AuthGuard ],
+    component: SearchItemComponent
   }
 ]
 
@@ -44,7 +50,8 @@ const appRoutes: Routes = [
     LoginFormComponent,
     DashboardComponent,
     LendItemComponent,
-    CreateUserComponent
+    CreateUserComponent,
+    SearchItemComponent
   ],
   imports: [
     BrowserModule,

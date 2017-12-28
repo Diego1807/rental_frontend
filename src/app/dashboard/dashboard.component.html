@@ -5,8 +5,17 @@
     Name: {{item.Item.name}} <br>
     Price: {{item.Item.price}} <br>
     Description: {{item.Item.description}} <br>
-    ProductID: {{item.Item.productID}}
     <button (click)="returnItem(item.Item.productID)">Return Item</button>
   </li>
 </ul>
 <button (click)="lendItem()">Lend Item</button>
+<h3>Borrowed Items</h3>
+<hr>
+<ul *ngFor="let item of borrowedItems">
+  <li>
+      Name: {{item.Item.name}} <br>
+      Price: {{item.Item.price}} <br>
+      Description: {{item.Item.description}} <br>
+  </li>
+</ul>
+<button (click)="searchItem()">Search Item</button>
