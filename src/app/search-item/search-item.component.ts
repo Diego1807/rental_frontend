@@ -26,7 +26,7 @@ export class SearchItemComponent implements OnInit {
   borrowItem(productID) {
     this.user = this.userService.getUserProperties();
     this.itemsService.borrowItem(this.user.username, this.user.token, productID).subscribe((res: Response) => {
-      alert(res.success);
+      alert(res);
       this.router.navigate(['dashboard']);
       //Put result in a variable and parse it on the borrow-item.html
     });
